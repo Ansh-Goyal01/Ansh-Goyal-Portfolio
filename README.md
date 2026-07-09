@@ -2,8 +2,6 @@
 
 Interactive 3D developer portfolio with a keyboard where every keycap is a skill. Built with Next.js, React, TypeScript, GSAP, and Motion.
 
-Forked from [Naresh Khatri's 3d-portfolio](https://github.com/Naresh-Khatri/3d-portfolio) template and customized for [Ansh Goyal](https://github.com/Ansh-Goyal01).
-
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Ansh-Goyal01/Ansh-Goyal-Portfolio)
 
 ![Portfolio Preview](./public/assets/projects-screenshots/research-agent/research-agent.png)
@@ -78,39 +76,20 @@ Forked from [Naresh Khatri's 3d-portfolio](https://github.com/Naresh-Khatri/3d-p
 
 ---
 
-## 🎨 Personalization
+## 📁 Project Structure
 
-All personal info is centralized in [`src/data/config.ts`](src/data/config.ts):
+All content is centralized in a few data files, making the site easy to keep up to date:
 
-```ts
-const config = {
-  title: "Ansh Goyal | AI Engineer & Researcher",
-  author: "Ansh Goyal",
-  email: "anshgoyal5500@gmail.com",
-  site: "https://ansh-goyal.vercel.app",
-  githubUsername: "Ansh-Goyal01",
-  githubRepo: "Ansh-Goyal-Portfolio",
-  social: {
-    linkedin: "https://www.linkedin.com/in/anshgoyal-ml/",
-    github: "https://github.com/Ansh-Goyal01",
-    // ...
-  },
-};
-```
-
-Other files to customize:
-
-| File | What to change |
+| File | What it drives |
 |---|---|
+| `src/data/config.ts` | Site title, description, author info, and social links |
 | `src/data/projects.tsx` | Projects, screenshots, descriptions, and tech stacks |
-| `src/data/constants.ts` | Skills list and work experience |
-| `public/Ansh_Goyal_Resume.pdf` | Résumé PDF for the resume page |
-| `public/assets/projects-screenshots/` | Project screenshots (`research-agent/`, `metal-crack-detection/`, etc.) |
-| `public/assets/seo/og-image.png` | Social share preview image |
+| `src/data/constants.ts` | Skills list (3D keyboard keycaps) and work experience |
+| `src/data/research.ts` | Research section (papers, status, summaries) |
+| `public/Ansh_Goyal_Resume.pdf` | Résumé PDF served on the resume page |
+| `public/assets/projects-screenshots/` | Project cover art (`research-agent/`, `metal-crack-detection/`, etc.) |
 
 ### Projects
-
-Screenshots live under `public/assets/projects-screenshots/<project-id>/`. Current projects (generated abstract cover art — swap in real screenshots/demos as they become available):
 
 - Research Agent — 11-agent autonomous RAG research pipeline
 - Real-Time Metal Crack Detection on Edge — YOLOv8 on Raspberry Pi 5
@@ -120,30 +99,14 @@ Screenshots live under `public/assets/projects-screenshots/<project-id>/`. Curre
 
 ---
 
-## ⌨️ Updating the 3D Keyboard Skills
+## ⌨️ The 3D Keyboard
 
-The 3D keyboard keycaps are baked into a Spline file. To update the skills displayed on the keyboard:
+The keyboard's keycaps are individual objects baked into a Spline scene (`public/assets/skills-keyboard.spline`), each named to match an entry in the `SKILLS` record in `src/data/constants.ts`. Hovering or pressing a keycap looks up that name and displays the matching skill's label and description.
 
-1. **Import** the `public/assets/skills-keyboard.spline` file into [Spline](https://spline.design/)
-2. **Unhide** the keycap objects you want to edit
-3. **Update** the logo images on each keycap to your new skill icons
-4. **Rename** each keycap object to match the skill's `name` field in `src/data/constants.ts` (e.g. `js`, `react`, `docker`)
-5. **Hide** all keycap objects again
-6. **Export** the scene and overwrite `public/assets/skills-keyboard.spline`
+To change which skills appear:
 
-After updating the Spline file, make sure `src/data/constants.ts` has matching entries for every skill on the keyboard:
-
-```ts
-export const SKILLS: Record<SkillNames, Skill> = {
-  js: { name: "js", label: "JavaScript", shortDescription: "...", ... },
-  react: { name: "react", label: "React", shortDescription: "...", ... },
-  // ... add/remove entries to match your keyboard
-};
-```
-
-The `SkillNames` enum, `SKILLS` record, and the Spline keycap names must all stay in sync for the keyboard interactions to work correctly.
-
-> **Note on this fork:** the 25 keycaps are currently repurposed for Ansh's actual stack (Python, PyTorch, LangChain, arXiv, IEEE, etc.) by relabeling the existing `SKILLS` entries — the interaction/hover logic works correctly, but the physical keycaps in the Spline scene still show their original engravings (`js`, `react`, `docker`, ...) since editing the baked 3D model requires the Spline editor, which isn't available in this environment. Re-bake `public/assets/skills-keyboard.spline` following the steps above if you want the physical keycap art to match too.
+1. Update the `label`, `icon`, `color`, and `shortDescription` fields on the relevant entries in `src/data/constants.ts`.
+2. To change the physical keycap art/engravings themselves, open `public/assets/skills-keyboard.spline` in [Spline](https://spline.design/), edit the keycap object, re-export, and overwrite the file — object names must stay in sync with the `SkillNames` enum for the interactions to keep working.
 
 ---
 
@@ -163,26 +126,21 @@ These features activate automatically when the `NEXT_PUBLIC_WS_URL` environment 
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Ansh-Goyal01/Ansh-Goyal-Portfolio)
 
-This site is deployed on **Vercel**. To deploy your own:
+This site is deployed on **Vercel**:
 
-1. Push your code to a GitHub repository
+1. Push your code to GitHub
 2. Connect the repository to [Vercel](https://vercel.com)
 3. Add your environment variables in the Vercel dashboard
 4. Vercel handles the rest — automatic deployments on every push
 
 ---
 
-## ⚠️ Known Follow-ups
+## ⚠️ Notes
 
-A few things worth doing before/after your first deploy:
-
-- **Nav hover-preview thumbnails** (`public/assets/nav-link-previews/*.png`) are still screenshots from the original template author's site. Retake them from your own deployed site (each is just a small preview shown on nav hover) once you're happy with the content.
-- **Project screenshots** under `public/assets/projects-screenshots/` are generated abstract cover cards, not real UI screenshots — swap in real dashboards/demo GIFs as your projects get a UI.
+- **Project screenshots** under `public/assets/projects-screenshots/` are generated cover art, not real UI screenshots — swap in real dashboards/demo GIFs as the projects get a UI.
 - **`RESEND_API_KEY`** needs to be set in `.env.local` (or your Vercel env vars) for the contact form to actually send email.
-- **`site` in `src/data/config.ts`** is a placeholder Vercel URL — update it once you know your final domain (affects SEO/OG tags).
+- **`site` in `src/data/config.ts`** is a placeholder Vercel URL — update it once the final domain is live (affects SEO/OG tags).
 
-## 📄 License & Credits
+## 📄 License
 
-This project is open source and available under the [MIT License](LICENSE).
-
-Built on the excellent [3d-portfolio](https://github.com/Naresh-Khatri/3d-portfolio) template by [Naresh Khatri](https://github.com/Naresh-Khatri). If you use this template, a credit or link back to the original repo would be much appreciated ❤️
+This project is available under the [MIT License](LICENSE).
