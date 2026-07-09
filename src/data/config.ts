@@ -25,7 +25,7 @@ const config = {
   ],
   author: "Ansh Goyal",
   email: "anshgoyal5500@gmail.com",
-  site: "https://ansh-goyal.vercel.app",
+  site: "https://ansh-goyal-portfolio.vercel.app",
 
   // for github stars button
   githubUsername: "Ansh-Goyal01",
