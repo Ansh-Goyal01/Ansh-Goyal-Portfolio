@@ -39,7 +39,7 @@ const ProjectsLinks = ({ live, github }: { live?: string; github?: string }) => 
           href={live}
         >
           <Button variant={"default"} size={"sm"}>
-            Read More
+            Live Demo
             <ArrowUpRight className="ml-3 w-5 h-5" />
           </Button>
         </Link>
@@ -77,17 +77,28 @@ const brand = (title: string, file: string): Skill => ({
 
 const PROJECT_SKILLS = {
   python: brand("Python", "python-mono.svg"),
+  fastapi: brand("FastAPI", "fastapi.svg"),
+  neo4j: brand("Neo4j", "network.svg"),
+  postgres: brand("PostgreSQL", "postgresql-mono.svg"),
+  sarvam: brand("Sarvam AI (voice)", "mic.svg"),
+  montecarlo: brand("Monte Carlo", "gauge.svg"),
+  nextjs: brand("Next.js", "nextdotjs-mono.svg"),
+  langgraph: brand("LangGraph", "langchain.svg"),
+  chroma: brand("ChromaDB", "database.svg"),
+  llm: brand("Gemini / Groq", "bot.svg"),
   langchain: brand("LangChain", "langchain.svg"),
   llama: brand("LLaMA 3.3 70B", "meta.svg"),
   scikit: brand("Scikit-learn", "scikitlearn.svg"),
-  numpy: brand("NumPy", "numpy.svg"),
-  pandas: brand("Pandas", "pandas.svg"),
   yolo: brand("YOLOv8", "ultralytics.svg"),
   opencv: brand("OpenCV", "opencv.svg"),
   raspberrypi: brand("Raspberry Pi 5", "raspberrypi.svg"),
+  elevenlabs: brand("ElevenLabs", "audio-waveform.svg"),
+  agents: brand("Voice Agents", "bot.svg"),
+  esp32: brand("ESP32", "cpu.svg"),
+  cpp: brand("C++", "cplusplus.svg"),
+  vibration: brand("Vibration Analysis", "activity.svg"),
+  vercel: brand("Vercel", "vercel-mono.svg"),
   git: brand("Git", "git.svg"),
-  github: brand("GitHub", "github.svg"),
-  ieee: brand("IEEE", "ieee.svg"),
 };
 
 export type Project = {
@@ -104,13 +115,80 @@ export type Project = {
 
 const projects: Project[] = [
   {
+    id: "verity",
+    category: "Probabilistic ML · hackFront India 2026 top 14",
+    title: "Verity: Calibrated EV Trip Dispatch",
+    src: `${BASE_PATH}/verity/verity.png`,
+    screenshots: ["home.webp", "planner.webp"],
+    live: "https://verity-three-pi.vercel.app/web/home.html",
+    github: "https://github.com/Ansh-Goyal01/verity",
+    skills: {
+      frontend: [PROJECT_SKILLS.python, PROJECT_SKILLS.montecarlo, PROJECT_SKILLS.neo4j],
+      backend: [PROJECT_SKILLS.fastapi, PROJECT_SKILLS.postgres, PROJECT_SKILLS.sarvam],
+    },
+    get content() {
+      return (
+        <div>
+          <TypographyP className="font-mono">
+            A flight dispatcher for EV trips. Before a long drive, Verity answers &ldquo;Will I make it?&rdquo; with a GO / NO-GO decision, an arrival band, a Bingo Line (the battery level below which you must divert) and a backup charger that doesn&apos;t share the main charger&apos;s site or operator. With too little evidence it says &ldquo;not sure&rdquo; instead of guessing.
+          </TypographyP>
+          <TypographyP className="font-mono">
+            A physics-first energy model runs 1,500 Monte Carlo simulations per forecast. A Neo4j trust graph weighs every charger report by its source&apos;s track record and catches coordinated fake-report rings. Drivers can plan and report by voice in Hindi through Sarvam AI.
+          </TypographyP>
+          <TypographyP className="font-mono">
+            On 21 held-out real Indian trips, the 90% arrival band contained the real outcome 19 times, against 14 for an ML regression, and range error was under a quarter of the manufacturer&apos;s claimed range. Placed in the top 14 of 2,000+ teams at hackFront India 2026.
+          </TypographyP>
+          <ProjectsLinks live={this.live} github={this.github} />
+          <SlideShow
+            images={[
+              `${BASE_PATH}/verity/home.webp`,
+              `${BASE_PATH}/verity/planner.webp`,
+            ]}
+          />
+        </div>
+      );
+    },
+  },
+  {
+    id: "adhikaar",
+    category: "Agentic AI · Civic Tech",
+    title: "Adhikaar: Welfare-Eligibility Agent",
+    src: `${BASE_PATH}/adhikaar/adhikaar.png`,
+    screenshots: ["home.webp", "how-it-works.webp"],
+    live: "https://adhikaar-frontend.vercel.app/",
+    github: "https://github.com/Ansh-Goyal01/ADHIKAAR",
+    skills: {
+      frontend: [PROJECT_SKILLS.nextjs, PROJECT_SKILLS.langgraph, PROJECT_SKILLS.llm],
+      backend: [PROJECT_SKILLS.fastapi, PROJECT_SKILLS.chroma, PROJECT_SKILLS.python],
+    },
+    get content() {
+      return (
+        <div>
+          <TypographyP className="font-mono">
+            Tells citizens which central and Uttar Pradesh welfare schemes they qualify for, in 11 Indian languages, and proves it. A deterministic rules engine decides eligibility and cites the official clause behind every rule; the LLM only reads the user&apos;s input and explains the result.
+          </TypographyP>
+          <TypographyP className="font-mono">
+            Against an LLM-only agent: accuracy 56.5% &rarr; 91.3% and false entitlements 16 &rarr; 0; a later 111-check evaluation had zero false and zero missed entitlements. It also builds an application packet with a document checklist. 2nd runner-up at Bit N Build &apos;26 UP Regionals (Google Developer Groups).
+          </TypographyP>
+          <ProjectsLinks live={this.live} github={this.github} />
+          <SlideShow
+            images={[
+              `${BASE_PATH}/adhikaar/home.webp`,
+              `${BASE_PATH}/adhikaar/how-it-works.webp`,
+            ]}
+          />
+        </div>
+      );
+    },
+  },
+  {
     id: "research-agent",
     category: "Agentic AI",
-    title: "Research Agent",
+    title: "Research Agent: 11-Agent Research Pipeline",
     src: `${BASE_PATH}/research-agent/research-agent.png`,
     screenshots: ["research-agent.png"],
     live: "#",
-    github: "https://github.com/Ansh-Goyal01",
+    github: "https://github.com/Ansh-Goyal01/Research-Agent",
     skills: {
       frontend: [PROJECT_SKILLS.python, PROJECT_SKILLS.llama, PROJECT_SKILLS.langchain],
       backend: [PROJECT_SKILLS.scikit, PROJECT_SKILLS.git],
@@ -119,15 +197,14 @@ const projects: Project[] = [
       return (
         <div>
           <TypographyP className="font-mono">
-            An 11-agent autonomous pipeline with RAG-powered retrieval (FAISS +
-            arXiv/Semantic Scholar): topic → 20+ papers ingested → gap
-            identification → ML experiments (RF, XGBoost, LightGBM; 5-fold CV,
-            p-values, 95% CI) → a complete IEEE-quality paper with 6
-            auto-generated figures. Runs on the Groq free tier at ~20k
-            tokens/run with 3 human approval checkpoints.
+            Give it one topic and 11 agents carry it to a drafted IEEE-style paper: literature search on arXiv and Semantic Scholar, gap finding, ML experiments (RF, XGBoost, LightGBM with Optuna tuning), SHAP explanations, statistical checks and auto-generated figures. Runs on LLaMA 3.3 70B via Groq with human approval checkpoints.
           </TypographyP>
           <ProjectsLinks live={this.live} github={this.github} />
-          <SlideShow images={[`${BASE_PATH}/research-agent/research-agent.png`]} />
+          <SlideShow
+            images={[
+              `${BASE_PATH}/research-agent/research-agent.png`,
+            ]}
+          />
         </div>
       );
     },
@@ -139,7 +216,7 @@ const projects: Project[] = [
     src: `${BASE_PATH}/metal-crack-detection/metal-crack-detection.png`,
     screenshots: ["metal-crack-detection.png"],
     live: "#",
-    github: "https://github.com/Ansh-Goyal01",
+    github: "https://github.com/Ansh-Goyal01/edge-ai-crack-detection-yolo",
     skills: {
       frontend: [PROJECT_SKILLS.yolo, PROJECT_SKILLS.opencv],
       backend: [PROJECT_SKILLS.raspberrypi, PROJECT_SKILLS.python],
@@ -148,10 +225,7 @@ const projects: Project[] = [
       return (
         <div>
           <TypographyP className="font-mono">
-            Trained YOLOv8 to 97.5% precision and 98% mAP@50 for real-time
-            metal crack detection, then NCNN-exported the model with threaded
-            inference running at 30–40 FPS on a Raspberry Pi 5 under hard
-            edge-hardware constraints.
+            Trained YOLOv8 to 97.5% precision and 98% mAP@50 for real-time metal crack detection, then exported it to NCNN with threaded inference running at 30&ndash;40 FPS on a Raspberry Pi 5.
           </TypographyP>
           <ProjectsLinks live={this.live} github={this.github} />
           <SlideShow
@@ -164,31 +238,27 @@ const projects: Project[] = [
     },
   },
   {
-    id: "dynamic-pricing-engine",
-    category: "Data Science",
-    title: "Dynamic Pricing Engine for Urban Parking",
-    src: `${BASE_PATH}/dynamic-pricing-engine/dynamic-pricing-engine.png`,
-    screenshots: ["dynamic-pricing-engine.png"],
+    id: "vaniforge",
+    category: "Voice AI · Build Arena 2026 finalist",
+    title: "VaniForge: No-Code Voice AI Agent Builder",
+    src: `${BASE_PATH}/vaniforge/vaniforge.png`,
+    screenshots: ["vaniforge.png"],
     live: "#",
-    github: "https://github.com/Ansh-Goyal01",
+    github: "#",
     skills: {
-      frontend: [PROJECT_SKILLS.python, PROJECT_SKILLS.pandas],
-      backend: [PROJECT_SKILLS.numpy, PROJECT_SKILLS.git],
+      frontend: [PROJECT_SKILLS.elevenlabs, PROJECT_SKILLS.agents],
+      backend: [PROJECT_SKILLS.python],
     },
     get content() {
       return (
         <div>
           <TypographyP className="font-mono">
-            A data-driven pricing engine with 3 models (baseline linear,
-            demand-based, competition-aware) trained on real urban
-            parking-lot data, simulating real-time price updates rendered as
-            interactive Bokeh dashboards tracking occupancy-to-price
-            dynamics.
+            Turns a plain-English or Hindi description of a business into a deterministic conversation graph, tests it against synthetic difficult callers, then deploys it as a phone or web voice agent on ElevenLabs. Finalist at Build Arena 2026 (ElevenLabs track), presented at the Microsoft office in Noida.
           </TypographyP>
           <ProjectsLinks live={this.live} github={this.github} />
           <SlideShow
             images={[
-              `${BASE_PATH}/dynamic-pricing-engine/dynamic-pricing-engine.png`,
+              `${BASE_PATH}/vaniforge/vaniforge.png`,
             ]}
           />
         </div>
@@ -196,63 +266,27 @@ const projects: Project[] = [
     },
   },
   {
-    id: "traffic-management",
-    category: "Explainable AI",
-    title: "Explainable AI Traffic Management System",
-    src: `${BASE_PATH}/traffic-management/traffic-management.png`,
-    screenshots: ["traffic-management.png"],
+    id: "anumaan",
+    category: "Edge AI · Hardware",
+    title: "Anumaan: Edge Vibration-Monitoring Node",
+    src: `${BASE_PATH}/anumaan/anumaan.png`,
+    screenshots: ["anumaan.png"],
     live: "#",
-    github: "https://github.com/Ansh-Goyal01",
+    github: "#",
     skills: {
-      frontend: [PROJECT_SKILLS.yolo, PROJECT_SKILLS.scikit],
-      backend: [PROJECT_SKILLS.python, PROJECT_SKILLS.git],
+      frontend: [PROJECT_SKILLS.esp32, PROJECT_SKILLS.cpp],
+      backend: [PROJECT_SKILLS.vibration, PROJECT_SKILLS.python],
     },
     get content() {
       return (
         <div>
           <TypographyP className="font-mono">
-            YOLOv8 vehicle detection feeds an LSTM traffic-forecasting model
-            and a congestion classifier (Low/Medium/High), with a SHAP
-            interpretability layer explaining every prediction. Manuscript in
-            preparation for an IEEE conference.
-          </TypographyP>
-          <ProjectsLinks live={this.live} github={this.github} />
-          <SlideShow
-            images={[`${BASE_PATH}/traffic-management/traffic-management.png`]}
-          />
-        </div>
-      );
-    },
-  },
-  {
-    id: "bearing-anomaly-research",
-    category: "Published Research",
-    title: "Lead-Time Metric for Bearing Anomaly Detection",
-    src: `${BASE_PATH}/bearing-anomaly-research/bearing-anomaly-research.png`,
-    screenshots: ["bearing-anomaly-research.png"],
-    live: "#",
-    github: "https://github.com/Ansh-Goyal01",
-    skills: {
-      frontend: [PROJECT_SKILLS.ieee, PROJECT_SKILLS.python],
-      backend: [PROJECT_SKILLS.scikit, PROJECT_SKILLS.github],
-    },
-    get content() {
-      return (
-        <div>
-          <TypographyP className="font-mono">
-            Sole-authored paper (submitted, 2026) for the International
-            Journal of Prognostics and Health Management (IJPHM). Introduces
-            a false-alarm-gated lead-time metric for rolling-bearing
-            prognostics, benchmarking 9 detectors across 4 run-to-failure
-            datasets (XJTU-SY, FEMTO/PRONOSTIA, University of Ferrara, NASA
-            IMS) plus a real ONGC gas-turbine record — with a full
-            reproducible pipeline released on GitHub and an archived Zenodo
-            DOI.
+            An ESP32 + MPU6050 node that monitors machine vibration for early fault warning, built on the same false-alarm-gated approach as my predictive-maintenance research. Presented solo, with live hardware, at the IEEE TechFusion Innovation Challenge 2026 Grand Finale and placed runner-up.
           </TypographyP>
           <ProjectsLinks live={this.live} github={this.github} />
           <SlideShow
             images={[
-              `${BASE_PATH}/bearing-anomaly-research/bearing-anomaly-research.png`,
+              `${BASE_PATH}/anumaan/anumaan.png`,
             ]}
           />
         </div>

@@ -91,11 +91,13 @@ All content is centralized in a few data files, making the site easy to keep up 
 
 ### Projects
 
-- Research Agent — 11-agent autonomous RAG research pipeline
+- Verity — calibrated EV trip dispatch (top 14 of 2,000+ teams, hackFront India 2026)
+- Adhikaar — welfare-eligibility agent: a rules engine decides, the LLM explains
+- Research Agent — 11-agent autonomous research pipeline
 - Real-Time Metal Crack Detection on Edge — YOLOv8 on Raspberry Pi 5
-- Dynamic Pricing Engine for Urban Parking
-- Explainable AI Traffic Management System
-- Bearing Anomaly Detection Research (IJPHM, submitted 2026)
+- VaniForge — no-code voice AI agent builder (Build Arena 2026 finalist)
+- Anumaan — ESP32 vibration-monitoring node (IEEE TechFusion 2026 runner-up)
+- Research: false-alarm-gated lead-time metric for bearing anomaly detection (IJPHM, conditionally accepted)
 
 ---
 

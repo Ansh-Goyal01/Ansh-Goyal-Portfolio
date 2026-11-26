@@ -1,9 +1,9 @@
 const config = {
   title: "Ansh Goyal | AI Engineer & Researcher",
   description: {
-    long: "Portfolio of Ansh Goyal — Electronics & Communication Engineering undergrad at JIIT Noida specializing in Industrial AI, Edge ML, and agentic AI engineering. Research deployed on live ONGC Solar Turbine equipment; builds RAG pipelines, multi-agent systems, edge computer vision, and SHAP-interpretable forecasting models.",
+    long: "Portfolio of Ansh Goyal — third-year Electronics & Communication Engineering student at JIIT Noida working on edge AI, predictive maintenance and LLM agents. Sole author of an IJPHM paper on bearing anomaly detection; built Verity (calibrated EV trip dispatch, top 14 of 2,000+ teams at hackFront India 2026) and Adhikaar (a welfare-eligibility agent where a rules engine decides and the LLM explains).",
     short:
-      "Portfolio of Ansh Goyal — AI/ML engineer and researcher building agentic AI, edge computer vision, and predictive-maintenance systems.",
+      "Portfolio of Ansh Goyal — AI/ML engineer and researcher building calibrated predictive systems, LLM agents and edge AI.",
   },
   keywords: [
     "Ansh Goyal",
@@ -22,6 +22,12 @@ const config = {
     "IEEE",
     "Python",
     "PyTorch",
+    "Verity",
+    "Adhikaar",
+    "IJPHM",
+    "Neo4j",
+    "Monte Carlo",
+    "Conformal Prediction",
   ],
   author: "Ansh Goyal",
   email: "anshgoyal5500@gmail.com",
